@@ -16,8 +16,15 @@
 	    <version>4.0.1</version>
 	    <scope>provided</scope>
 	</dependency>
-</dependencies>
+  </dependencies>
 <build>
-        <finalName>${project.name}</finalName>
+    <plugins>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-war-plugin</artifactId>
+            <version>3.3.2</version>
+        </plugin>
+    </plugins>
+    <finalName>${project.name}</finalName>
 </build>
 </project>
