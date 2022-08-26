@@ -55,23 +55,26 @@
 
 ### add and manage datasource
 - data-source --help --commands
-- data-source add --name=movieappDS --jndi-name=java:/movieDS --driver-name=mariadb-java-client-2.7.2.jar --connection-url=jdbc:mariadb://localhost:3306/dbmovie --user-name=movie --password=password
-- data-source disable --name=MovieappDS
-- data-source enable --name=MovieappDS
-- data-source test-connection-in-pool --name=MovieappDS
-- data-source flush-gracefully-connection-in-pool --name=MovieappDS
-- data-source remove --name=movieDS
+- data-source add --name=MovieDSmaria --jndi-name=java:/movieDS --driver-name=mariadb-java-client-3.0.7.jar --connection-url=jdbc:mariadb://192.168.56.101:3307/dbmovie --user-name=movie --password=password --max-pool-size=15 --min-pool-size=5 --pool-prefill  --statistics-enabled
+- data-source disable --name=MovieDSmaria
+- data-source enable --name=MovieDSmaria
+- data-source test-connection-in-pool --name=MovieDSmaria
+- data-source flush-gracefully-connection-in-pool --name=MovieDSmaria
+- data-source remove --name=MovieDSmaria
 
 ### avec JMX
-- /subsystem=datasources/data-source=MovieappDS:remove
-- /subsystem=datasources/data-source=MovieappDS:read-attribute(name=driver-name)
-- /subsystem=datasources/data-source=MovieappDS:read-attribute(name=connection-url)
-- /subsystem=datasources/data-source=MovieappDS:write-attribute(name=driver-name, value=mariadb-java-client-2.7.2.jar)
-- /subsystem=datasources/data-source=MovieappDS:write-attribute(name=connection-url,value=jdbc:mariadb://localhost:3306/dbmovie)
+- /subsystem=datasources/data-source=MovieDSmaria:remove
+- /subsystem=datasources/data-source=MovieDSmaria:read-attribute(name=driver-name)
+- /subsystem=datasources/data-source=MovieDSmaria:read-attribute(name=connection-url)
+- /subsystem=datasources/data-source=MovieDSmaria:write-attribute(name=driver-name, value=mariadb-java-client-2.7.2.jar)
+- /subsystem=datasources/data-source=MovieDSmaria:write-attribute(name=connection-url,value=jdbc:mariadb://localhost:3306/dbmovie)
 
 ### pool seetings
 - initial-pool-size=
 - max-pool-size=
+- min-pool-size=
+- pool-prefill=
+- statistics-enabled
 
 ## 3. Interfaces
 ### Interface public
