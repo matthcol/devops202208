@@ -1,5 +1,9 @@
 pipeline {
     agent any
+    
+    parameters {
+        string(name: 'BRANCH', defaultValue: 'devm2a', description: 'Name of the git branch of Java Project to build')
+    }
 
     tools {
         // Install the Maven version configured as "M3" and add it to the path.
@@ -10,7 +14,7 @@ pipeline {
         stage('Git') {
             steps{
                 // Get some code from a GitHub repository
-                git branch: 'devm2c',
+                git branch: "${params.BRANCH}",
                     url: 'https://github.com/matthcol/movieapijava2021.git'
             }
         }
@@ -18,6 +22,11 @@ pipeline {
             steps{
                 // Run Maven: clean, compile, test-compile, test
                 sh "mvn clean test"
+            }
+            post {
+                always {
+                    junit '**/target/surefire-reports/TEST-*.xml'
+                }
             }
         }
         stage('Build') {
@@ -34,7 +43,6 @@ pipeline {
                 // If Maven was able to run the tests, even if some of the test
                 // failed, record the test results and archive the jar file.
                 success {
-                    // junit '**/target/surefire-reports/TEST-*.xml'
                     archiveArtifacts 'target/*.jar'
                 }
             }
