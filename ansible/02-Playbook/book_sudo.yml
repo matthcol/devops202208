@@ -1,0 +1,10 @@
+---
+- name: Deploy Movie Api
+  hosts: appservers
+  become: yes
+  become_method: su
+  tasks:
+    - name: Create Directory
+      ansible.builtin.file:
+        path: /opt/movieapi
+        state: directory
