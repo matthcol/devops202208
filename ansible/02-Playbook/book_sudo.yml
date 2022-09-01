@@ -2,7 +2,7 @@
 - name: Deploy Movie Api
   hosts: appservers
   become: yes
-  become_method: su
+  become_method: sudo
   tasks:
     - name: Create Directory
       ansible.builtin.file:
