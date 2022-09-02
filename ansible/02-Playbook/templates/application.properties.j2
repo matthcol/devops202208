@@ -1,0 +1,9 @@
+# hibernate configuration
+spring.datasource.url=jdbc:{{ db_editor }}://{{ db_host }}:{{ db_port }}/{{ db_name }}
+spring.datasource.username={{ db_user }}
+spring.datasource.password={{ db_password }}
+# DDL : Data Definition Language (create/alter/drop table)
+spring.jpa.hibernate.ddl-auto=create-drop
+
+# show SQL requests
+spring.jpa.show-sql=true
