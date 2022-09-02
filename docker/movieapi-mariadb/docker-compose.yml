@@ -1,0 +1,20 @@
+version: '3.1'
+
+services:
+  api:
+    build:
+      context: .
+    ports:
+        - 8080:8080
+
+
+  db:
+    image: mariadb:10.9.2
+    restart: always
+    environment:
+      MYSQL_DATABASE: dbmovie
+      MYSQL_USER: movie
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: password
+    volumes:
+      - ./sql:/docker-entrypoint-initdb.d
