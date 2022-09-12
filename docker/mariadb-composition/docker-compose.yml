@@ -1,0 +1,21 @@
+version: '3.1'
+
+services:
+
+  db:
+    image: mariadb:10.9
+    restart: always
+    environment:
+      MYSQL_DATABASE: dbmovie
+      MYSQL_USER: movie
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: password
+    volumes:
+      - ./scripts:/docker-entrypoint-initdb.d
+      - dbdata:/var/lib/mysql
+    ports:
+      - 3306:3306
+
+volumes:
+  dbdata:
+
