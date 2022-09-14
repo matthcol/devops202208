@@ -3,6 +3,7 @@ pipeline {
     
     parameters {
         string(name: 'BRANCH', defaultValue: 'devm2a', description: 'Name of the git branch of Java Project to build')
+        string(name: 'REPOSITORY', defaultValue: '/home/srvadmin/artifacts', description: 'Repository path to store artifacts')
     }
 
     tools {
@@ -43,7 +44,8 @@ pipeline {
                 // If Maven was able to run the tests, even if some of the test
                 // failed, record the test results and archive the jar file.
                 success {
-                    archiveArtifacts 'target/*.jar'
+                    // archiveArtifacts 'target/*.jar'
+                    sh "cp target/movieapi.jar ${params.REPOSITORY}/"
                 }
             }
         }
