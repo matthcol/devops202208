@@ -1,0 +1,2 @@
+deploy ~/bonjour.war
+deployment-info --name=bonjour.war
