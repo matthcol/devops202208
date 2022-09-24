@@ -1,0 +1,11 @@
+# Mark the commands below to be run as a batch
+batch
+
+# Add postgres JDBC driver
+deploy /opt/jdbc/mariadb-java-client-3.0.7.jar
+
+# Add the datasource
+data-source add --name=MariaDS --jndi-name=java:/movieDS --driver-name=mariadb-java-client-3.0.7.jar --connection-url=jdbc:mariadb://db:3306/dbmovie --user-name=movie --password=password --max-pool-size=15 --min-pool-size=5 --pool-prefill --statistics-enabled
+
+# Execute the batch
+run-batch
